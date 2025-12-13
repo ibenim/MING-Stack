@@ -1,0 +1,14 @@
+apiVersion: 1
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      version: Flux
+      organization: home
+      defaultBucket: sensors
+      token: mysecretlongtoken1234567890
+    secureJsonData:
+      token: mysecretlongtoken1234567890
+    isDefault: true

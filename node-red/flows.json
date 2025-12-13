@@ -1,0 +1,545 @@
+[
+    {
+        "id": "4a4e36ac10b0ae88",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Living Room Temp",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "8",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/livingroom/temperature",
+        "payload": "",
+        "payloadType": "str",
+        "x": 200,
+        "y": 380,
+        "wires": [
+            [
+                "261b6758576ffb37"
+            ]
+        ]
+    },
+    {
+        "id": "261b6758576ffb37",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Temp",
+        "func": "msg.payload = { value: Number((20 + Math.random()*8).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "66ce838e89eabc34"
+            ]
+        ]
+    },
+    {
+        "id": "66ce838e89eabc34",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Publish",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63bf4a497c9931e1",
+        "x": 600,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "8bb5876f9843c699",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Living Room Temp",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "8",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/livingroom/temperature",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "9eda52a144901289"
+            ]
+        ]
+    },
+    {
+        "id": "9eda52a144901289",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Temp",
+        "func": "msg.payload = { value: Number((20 + Math.random()*8).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 540,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "3d2f2c2bc5910f5b",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "15",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/kitchen/humidity",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 590,
+        "wires": [
+            [
+                "1f11b231c3b1f9e9"
+            ]
+        ]
+    },
+    {
+        "id": "1f11b231c3b1f9e9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: Number((40 + Math.random()*25).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 590,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "2fce20af05aa2ec8",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/outdoor/temperature",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 640,
+        "wires": [
+            [
+                "19db0652333582a6"
+            ]
+        ]
+    },
+    {
+        "id": "19db0652333582a6",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: Number((5 + Math.random()*30).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 640,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "14d29f9f52bbe078",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "45",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/bedroom/co2",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 690,
+        "wires": [
+            [
+                "b1ac03c03d028d46"
+            ]
+        ]
+    },
+    {
+        "id": "b1ac03c03d028d46",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: 400 + Math.round(Math.random()*1200) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 690,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "0e0ec248a01f3f83",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/office/light",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 740,
+        "wires": [
+            [
+                "0a4b0c4b5ec1d44a"
+            ]
+        ]
+    },
+    {
+        "id": "0a4b0c4b5ec1d44a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: 100 + Math.round(Math.random()*900) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 740,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "1e3c7d724788eec0",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/basement/pressure",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 790,
+        "wires": [
+            [
+                "9cbc0ef507475fd7"
+            ]
+        ]
+    },
+    {
+        "id": "9cbc0ef507475fd7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: Number((980 + Math.random()*50).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 790,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "018bb9f3b53c5f49",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "120",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/garage/soil_moisture",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 840,
+        "wires": [
+            [
+                "d7f696ce97333cab"
+            ]
+        ]
+    },
+    {
+        "id": "d7f696ce97333cab",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: Number((20 + Math.random()*60).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 840,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "e3d5e8a479e126f6",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/attic/voc",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 890,
+        "wires": [
+            [
+                "e551ede7ec9f3716"
+            ]
+        ]
+    },
+    {
+        "id": "e551ede7ec9f3716",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: 50 + Math.round(Math.random()*950) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 890,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "d951e1d6c5da9de4",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/balcony/wind_speed",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 940,
+        "wires": [
+            [
+                "de47ef03ff122f08"
+            ]
+        ]
+    },
+    {
+        "id": "de47ef03ff122f08",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "func": "msg.payload = { value: Number((Math.random()*25).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 940,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "1766de3eba77fc73",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "6",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/serverroom/noise_db",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 990,
+        "wires": [
+            [
+                "2202e92b59c4fb64"
+            ]
+        ]
+    },
+    {
+        "id": "2202e92b59c4fb64",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Server Room Noise",
+        "func": "msg.payload = { value: Number((30 + Math.random()*40).toFixed(1)) };\nreturn msg;",
+        "outputs": 1,
+        "x": 380,
+        "y": 990,
+        "wires": [
+            [
+                "b547754f59467a4e"
+            ]
+        ]
+    },
+    {
+        "id": "b547754f59467a4e",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Publish",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63bf4a497c9931e1",
+        "x": 580,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "63bf4a497c9931e1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

@@ -54,3 +54,46 @@ docker-compose logs -f mosquitto telegraf node-red influxdb grafana
 If anything here is unclear or you want me to change the compose behavior (e.g.
 make Node-RED edits persistent or persist telegraf config another way), tell
 me which option you prefer and I will prepare the changes.
+
+## Telegraf config synchronization
+
+If you use a local Telegraf config (the repository file `telegraf/telegraf/telegraf.conf`) and also register a Telegraf configuration inside InfluxDB (remote Telegraf configs), keep them identical so ingestion behaves predictably.
+
+- View the local repo copy:
+
+```bash
+cat telegraf/telegraf/telegraf.conf
+```
+
+- View the file used by the running container:
+
+```bash
+docker compose exec telegraf cat /etc/telegraf/telegraf.conf
+```
+
+- Quick checksum comparison (Linux / Git Bash):
+
+```bash
+sha256sum telegraf/telegraf/telegraf.conf /dev/fd/0 <<<'$(docker compose exec telegraf cat /etc/telegraf/telegraf.conf)'
+```
+
+- Register the same config in InfluxDB via API (example):
+
+```bash
+export INFLUX_TOKEN="your-token"
+export INFLUX_URL="http://localhost:8086"
+curl -sS -X POST "$INFLUX_URL/api/v2/telegrafs?org=home" \
+  -H "Authorization: Token $INFLUX_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data-binary @- <<'JSON'
+{
+  "name": "telegraf-from-repo",
+  "active": true,
+  "config": "$(sed -e 's/\\/\\\\/g' -e ':a;N;$!ba;s/\n/\\n/g' telegraf/telegraf/telegraf.conf)"
+}
+JSON
+```
+
+Notes:
+- The `config` value must be a JSON string; the example above escapes newlines. Use a small script for more robust handling.
+- Confirm registered configs with: `curl -H "Authorization: Token $INFLUX_TOKEN" $INFLUX_URL/api/v2/telegrafs`

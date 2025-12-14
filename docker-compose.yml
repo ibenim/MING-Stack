@@ -39,7 +39,6 @@
 #  PHASE 2
 
 
-version: "3.9"
 services:
   mosquitto:
     image: eclipse-mosquitto:latest
@@ -86,9 +85,13 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=admin123
       - DOCKER_INFLUXDB_INIT_ORG=home
       - DOCKER_INFLUXDB_INIT_BUCKET=sensors
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mysecretlongtoken1234567890
+      # The admin token can be set via the environment variable INFLUX_TOKEN.
+      # If not set, the default below is used. To override, create a .env file
+      # with INFLUX_TOKEN=yourtoken or export INFLUX_TOKEN in your shell.
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_TOKEN:-mysecretlongtoken1234567890}
     volumes:
-      - influxdb-data:/var/lib/influxdb2
+      # Persist InfluxDB data to host folder so the DB exists outside the container
+      - ./influxdb/data:/var/lib/influxdb2
     networks:
       - iot-net
     healthcheck:
@@ -110,25 +113,9 @@ services:
       # doesn't confuse file vs directory mounts.
       - ./telegraf/telegraf:/etc/telegraf:ro
     environment:
-      - INFLUX_TOKEN=mysecretlongtoken1234567890
+      # Use the same INFLUX_TOKEN value (read from environment or .env)
+      - INFLUX_TOKEN=${INFLUX_TOKEN:-mysecretlongtoken1234567890}
     command: ["telegraf","--config","/etc/telegraf/telegraf.conf"]
-    networks:
-      - iot-net
-
-  influx-init:
-    image: python:3.11-alpine
-    container_name: influx-init
-    restart: "no"
-    depends_on:
-      influxdb:
-        condition: service_healthy
-    volumes:
-      - ./telegraf/telegraf:/etc/telegraf:ro
-      - ./influx/register_telegraf.py:/scripts/register_telegraf.py:ro
-    environment:
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mysecretlongtoken1234567890
-      - DOCKER_INFLUXDB_INIT_ORG=home
-    command: ["python","/scripts/register_telegraf.py"]
     networks:
       - iot-net
 
@@ -144,7 +131,13 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
       - grafana-data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      # Mount provisioning (writable so Grafana container can populate dashboards)
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      # Source dashboards (read-only) — copy JSON files into provisioning at startup
+      - ./grafana/dashboard:/tmp/grafana_dash_src:ro
+    # Copy any dashboard JSON files from /tmp/grafana_dash_src into the
+    # provisioning dashboards directory at container start, then run Grafana.
+    command: /bin/sh -c "mkdir -p /etc/grafana/provisioning/dashboards; cp -n /tmp/grafana_dash_src/*.json /etc/grafana/provisioning/dashboards/ 2>/dev/null || true; /run.sh"
     depends_on:
       - influxdb
     networks:
@@ -156,5 +149,5 @@ networks:
 
 volumes:
   node-red-data:
-  influxdb-data:
+  # influxdb-data:
   grafana-data:

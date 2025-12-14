@@ -1,0 +1,807 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "adc6bfz",
+    "generation": 43,
+    "creationTimestamp": "2025-12-13T08:08:48Z",
+    "labels": {},
+    "annotations": {}
+  },
+  "spec": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "semi-dark-blue",
+                  "value": 100
+                },
+                {
+                  "color": "#f8f4f4",
+                  "value": 1000
+                }
+              ]
+            },
+            "unit": "lux"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 3,
+          "y": 0
+        },
+        "id": 13,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/office/light\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Office Light",
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisGridShow": false,
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "bars",
+              "fillOpacity": 44,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "stepAfter",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": true,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 70
+                }
+              ]
+            },
+            "unit": "dB"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Server Room Noise db"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": true,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 10,
+          "x": 13,
+          "y": 0
+        },
+        "id": 14,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/serverroom/noise_db\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Server Room Noise db",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/serverroom/noise_db.*",
+              "renamePattern": "Server Room Noise db"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 25
+                }
+              ]
+            },
+            "unit": "velocitykmh"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/balcony/wind_speed\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Balcony Wind speed",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 1030
+                }
+              ]
+            },
+            "unit": "pressurehpa"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Basement Pressure"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": []
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 15,
+          "y": 8
+        },
+        "id": 11,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/basement/pressure\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Basement Pressure",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/basement/pressure.*",
+              "renamePattern": "Basement Pressure"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "id": 9,
+        "options": {
+          "displayMode": "gradient",
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "maxVizHeight": 300,
+          "minVizHeight": 16,
+          "minVizWidth": 8,
+          "namePlacement": "auto",
+          "orientation": "vertical",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "sizing": "auto",
+          "valueMode": "color"
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/kitchen/humidity\" or r[\"topic\"] == \"home/bedroom/co2\" or r[\"topic\"] == \"home/attic/voc\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Indoor Air Quality Group",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/attic/voc.*",
+              "renamePattern": "Attic VOC (PPB)"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/bedroom/co2.*",
+              "renamePattern": "Bedroom CO2 (ppm)"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/kitchen/humidity.*",
+              "renamePattern": "Kitchen Humidity (%)"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 3,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        },
+        "id": 10,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/kitchen/humidity\" or r[\"topic\"] == \"home/bedroom/co2\" or r[\"topic\"] == \"home/attic/voc\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Indoor Air Quality Group",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/attic/voc.*",
+              "renamePattern": "Attic VOC (ppb)"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/bedroom/co2.*",
+              "renamePattern": "Bedroom CO2 (ppm) "
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/kitchen/humidity.*",
+              "renamePattern": "Kitchen Humidity (%)"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisGridShow": false,
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 37,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "stepAfter",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "showValues": false,
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": 0
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 24
+                },
+                {
+                  "color": "red",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/livingroom/temperature\" or r[\"topic\"] == \"home/outdoor/temperature\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Temperature",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/livingroom/temperature.*",
+              "renamePattern": "Livingroom Temperature"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/outdoor/temperature.*",
+              "renamePattern": "Outdoor Temperature"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C5"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 16
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 25
+                },
+                {
+                  "color": "red",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        },
+        "id": 8,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": true,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "12.3.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"sensors\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor_data\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"host\"] == \"7f8a37d65684\")\r\n  |> filter(fn: (r) => r[\"topic\"] == \"home/livingroom/temperature\" or r[\"topic\"] == \"home/outdoor/temperature\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Temperature",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/livingroom/temperature.*",
+              "renamePattern": "Livingroom Temperature"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": ".*home/outdoor/temperature.*",
+              "renamePattern": "Outdoor Temperature"
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "gauge"
+      }
+    ],
+    "preload": false,
+    "schemaVersion": 42,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Sensors",
+    "uid": "adc6bfz",
+    "version": 43
+  },
+  "status": {}
+}

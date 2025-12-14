@@ -1,42 +1,13 @@
 [
     {
-        "id": "4a4e36ac10b0ae88",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "Living Room Temp",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "8",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "",
-        "topic": "home/livingroom/temperature",
-        "payload": "",
-        "payloadType": "str",
-        "x": 200,
-        "y": 380,
-        "wires": [
-            [
-                "261b6758576ffb37"
-            ]
-        ]
-    },
-    {
         "id": "261b6758576ffb37",
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Temp",
         "func": "msg.payload = { value: Number((20 + Math.random()*8).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 400,
-        "y": 380,
+        "x": 500,
+        "y": 280,
         "wires": [
             [
                 "66ce838e89eabc34"
@@ -57,8 +28,8 @@
         "correl": "",
         "expiry": "",
         "broker": "63bf4a497c9931e1",
-        "x": 600,
-        "y": 600,
+        "x": 700,
+        "y": 500,
         "wires": []
     },
     {
@@ -82,8 +53,8 @@
         "topic": "home/livingroom/temperature",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 540,
+        "x": 280,
+        "y": 440,
         "wires": [
             [
                 "9eda52a144901289"
@@ -97,8 +68,8 @@
         "name": "Temp",
         "func": "msg.payload = { value: Number((20 + Math.random()*8).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 540,
+        "x": 480,
+        "y": 440,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -126,8 +97,8 @@
         "topic": "home/kitchen/humidity",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 590,
+        "x": 280,
+        "y": 490,
         "wires": [
             [
                 "1f11b231c3b1f9e9"
@@ -140,8 +111,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: Number((40 + Math.random()*25).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 590,
+        "x": 480,
+        "y": 490,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -169,8 +140,8 @@
         "topic": "home/outdoor/temperature",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 640,
+        "x": 280,
+        "y": 540,
         "wires": [
             [
                 "19db0652333582a6"
@@ -181,10 +152,16 @@
         "id": "19db0652333582a6",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "func": "msg.payload = { value: Number((5 + Math.random()*30).toFixed(1)) };\nreturn msg;",
+        "name": "",
+        "func": "msg.payload = { value: Number((5 + Math.random()*10).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 640,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 540,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -212,8 +189,8 @@
         "topic": "home/bedroom/co2",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 690,
+        "x": 280,
+        "y": 590,
         "wires": [
             [
                 "b1ac03c03d028d46"
@@ -226,8 +203,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: 400 + Math.round(Math.random()*1200) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 690,
+        "x": 480,
+        "y": 590,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -255,8 +232,8 @@
         "topic": "home/office/light",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 740,
+        "x": 280,
+        "y": 640,
         "wires": [
             [
                 "0a4b0c4b5ec1d44a"
@@ -269,8 +246,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: 100 + Math.round(Math.random()*900) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 740,
+        "x": 480,
+        "y": 640,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -298,8 +275,8 @@
         "topic": "home/basement/pressure",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 790,
+        "x": 280,
+        "y": 690,
         "wires": [
             [
                 "9cbc0ef507475fd7"
@@ -312,8 +289,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: Number((980 + Math.random()*50).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 790,
+        "x": 480,
+        "y": 690,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -341,8 +318,8 @@
         "topic": "home/garage/soil_moisture",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 840,
+        "x": 280,
+        "y": 740,
         "wires": [
             [
                 "d7f696ce97333cab"
@@ -355,8 +332,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: Number((20 + Math.random()*60).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 840,
+        "x": 480,
+        "y": 740,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -384,8 +361,8 @@
         "topic": "home/attic/voc",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 890,
+        "x": 280,
+        "y": 790,
         "wires": [
             [
                 "e551ede7ec9f3716"
@@ -398,8 +375,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: 50 + Math.round(Math.random()*950) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 890,
+        "x": 480,
+        "y": 790,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -427,8 +404,8 @@
         "topic": "home/balcony/wind_speed",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 940,
+        "x": 280,
+        "y": 840,
         "wires": [
             [
                 "de47ef03ff122f08"
@@ -441,8 +418,8 @@
         "z": "f6f2187d.f17ca8",
         "func": "msg.payload = { value: Number((Math.random()*25).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 940,
+        "x": 480,
+        "y": 840,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -470,8 +447,8 @@
         "topic": "home/serverroom/noise_db",
         "payload": "",
         "payloadType": "str",
-        "x": 180,
-        "y": 990,
+        "x": 280,
+        "y": 890,
         "wires": [
             [
                 "2202e92b59c4fb64"
@@ -485,8 +462,8 @@
         "name": "Server Room Noise",
         "func": "msg.payload = { value: Number((30 + Math.random()*40).toFixed(1)) };\nreturn msg;",
         "outputs": 1,
-        "x": 380,
-        "y": 990,
+        "x": 480,
+        "y": 890,
         "wires": [
             [
                 "b547754f59467a4e"
@@ -507,9 +484,75 @@
         "correl": "",
         "expiry": "",
         "broker": "63bf4a497c9931e1",
-        "x": 580,
-        "y": 760,
+        "x": 680,
+        "y": 660,
         "wires": []
+    },
+    {
+        "id": "65244b5a8cacceba",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f4898be3a2308aa7",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "home/balcony/wind_speed",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "63bf4a497c9931e1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "65244b5a8cacceba"
+            ]
+        ]
+    },
+    {
+        "id": "4a4e36ac10b0ae88",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Living Room Temp",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "8",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "home/livingroom/temperature",
+        "payload": "",
+        "payloadType": "str",
+        "x": 300,
+        "y": 280,
+        "wires": [
+            [
+                "261b6758576ffb37"
+            ]
+        ]
     },
     {
         "id": "63bf4a497c9931e1",

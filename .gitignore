@@ -3,3 +3,4 @@ mosquitto/log/
 mosquitto/data/
 .env
 *.log
+github

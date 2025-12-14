@@ -231,3 +231,7 @@
 1765704033: New connection from 172.19.0.4:56084 on port 1883.
 1765704033: New client connected from 172.19.0.4:56084 as noderedcc596a2c14e4affc (p2, c1, k60).
 1765705505: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1765706580: Client Telegraf-Consumer-HTpcM disconnected.
+1765706580: Client noderedcc596a2c14e4affc disconnected.
+1765706580: mosquitto version 2.0.22 terminating
+1765706580: Saving in-memory database to /mosquitto/data//mosquitto.db.
